@@ -391,7 +391,7 @@ form button {
 
 .hero {
   /* background-image: linear-gradient(to right, #598392,#AEC3B0,#598392); */
-  background-image: url("images/bg1.png");
+  background-image: url("/static/images/bg1.png");
   /* background-color: #598392; */
   color: #eff6e0;
   height: 93vh;
@@ -404,7 +404,7 @@ form button {
 
 .dark .hero {
   /* background-image: linear-gradient(to right, black,#01161E,#124559); */
-  background-image: url("images/bg2.png");
+  background-image: url("/static/images/bg2.png");
   /* background-image: none; */
   /* background-color:#01161E ; */
   /* color: ; */
