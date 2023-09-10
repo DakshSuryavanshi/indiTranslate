@@ -260,6 +260,7 @@ body.dark {
 
 #signInButton {
   background-color: inherit;
+  cursor: pointer;
 }
 
 #signInButton:hover {
@@ -690,6 +691,44 @@ form button {
 .swap-position:hover {
   transform: translateX(-50%) scale(1.1);
 }
+
+/******/
+.swapbuttont{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: red; */
+  /* border: 5px solid red; */
+}
+
+.centert {
+  position: relative;
+}
+.translatebutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 5px solid var(--bg-color);
+  transition: all 0.3s ease;
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+}
+.translatebutton ion-icon {
+  font-size: 25px;
+}
+.translatebutton:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+/******/
+
 .card-bottom {
   display: flex;
   align-items: center;
@@ -1087,6 +1126,14 @@ ul li {
 .pppopup-contentstrong {
   font-weight: bold;
 }
+
+/* .suk{
+  color: #598392;
+}
+.dark .suk{
+  color: #01161e;
+} */
+
 /*-----footer Ends----*/
 
 
@@ -1213,15 +1260,20 @@ ul li {
     flex-direction: column;
   }
 
-  .swap-position {
+  .swapbuttont{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .swap-position ,.translatebutton{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .swap-position:hover {
+  .swap-position:hover, .translatebutton:hover{
     transform: translate(-50%, -50%) scale(1.1);
   }
-  .swap-position ion-icon {
+  .swap-position ion-icon  ,.translatebutton ion-icon{
     transform: rotate(90deg);
   }
+
 }

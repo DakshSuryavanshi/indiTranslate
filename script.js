@@ -75,6 +75,7 @@ document.addEventListener("click", (e) => {
   });
 });
 
+//swap button
 const swapBtn = document.querySelector(".swap-position"),
   inputLanguage = inputLanguageDropdown.querySelector(".selected"),
   outputLanguage = outputLanguageDropdown.querySelector(".selected"),
