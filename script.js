@@ -226,7 +226,6 @@ downloadBtn.addEventListener("click", (e) => {
 });
 
 //theme
-//theme
 const darkModeCheckbox = document.getElementById("dark-mode-btn");
 const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
 
