@@ -7,7 +7,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="icon" href="images/triangle.jpg">
     <link rel="stylesheet" href="style.css" />
     <title>IndiTranslate</title>
   </head>
@@ -32,12 +32,12 @@
             <img class="nav-img" src="images\logotrnsprnt.png" alt="IndiTranslate">
           </a>
         </div>
-        <div class="nav-section-links">
-          <a href="#s1" class="nav-links">About Us</a>
+        <div class="nav-section-links topnav"  id="myTopnav">
+          <a href="#s1" class="nav-links active">About Us</a>
           <a href="" class="nav-links">For Business</a>
           <div class="dropdown">
             <button class="dropbtn">
-              <a class="nav-links ff" href="#services">Features <i class="fa fa-caret-down"></i>
+              <a class="nav-links ff" href="#services">Features&nbsp;<i class="fa fa-caret-down"></i>
               </a>
             </button>
             <div class="dropdown-content">
@@ -49,21 +49,20 @@
           </div>
         </div>
       </div>
-      <div class="navright">
+
+      <div class="navright"  id="myTopnav1">
         <button id="signInButton" class="nav-links">Sign In</button>
+
         <!--sign in form-->
         <div id="signInPopup" class="popup">
           <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
             <h2 class="form-heading">Sign In</h2>
             <form>
-              <!-- <label for="username">Username:</label> -->
               <input type="text" id="username" name="username" placeholder="Username" required>
               <br>
-              <!-- <label for="password">Password:</label> -->
               <input type="password" id="password" name="password" placeholder="Password" required>
               <br>
-              <!-- <input class="submit" type="submit" value="Sign In"> -->
               <div class="submit">
                 <button>
                   <b>Submit</b>
@@ -74,6 +73,11 @@
         </div>
         <!-- / -->
       </div>
+<!---->
+      <a href="javascript:void(0);" class="icon" onclick="myFunctionmenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+<!---->
     </nav>
     <!------------------- Navbar Ends ------------->
     <!------------------- Hero Starts ------------->
@@ -186,7 +190,6 @@
         </div>
         <div class="text-area">
           <div class="dropimg">Drop your image here</div>
-          <!-- <div class="chars"><span id="input-chars">0</span> / 5000</div> -->
           <img id="image-preview" src="" alt="" style=" height:auto ;   width:100% " />
         </div>
         <div class="card-bottom">
@@ -219,7 +222,7 @@
           </div>
         </div>
         <div class="dropimg">Translated image will appear her</div>
-        <img id="image-preview" src="" alt="" style=" height:auto ;   width:100% " />
+        <img id="image-preview1" src="" alt="" style=" height:auto ;   width:100% " />
         <div class="card-bottom">
           <p>Download as a document!</p>
           <button id="download-btn">
@@ -250,8 +253,7 @@
     <!-----About Us Ends------>
     <!-----Features Starts------>
     <section class="section services-section" id="services">
-      <div class="container">
-        <!-- <div class="row"><div class="col-lg-6"><div class="section-title"><h2>What I Do</h2><p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites</p></div></div></div> -->
+      <div class="containerfeat">
         <div id="features" class="row">
           <div class="heading whatwedo">What We Do</div>
           <!-- feaure box -->
@@ -274,7 +276,6 @@
             <div id="ft2">
               <div class="feature-box-1">
                 <div class="icon">
-                  <!-- <i class="fa fa-user"></i> -->
                   <i class="fa fa-file"></i>
                 </div>
                 <div class="feature-content">
@@ -342,11 +343,8 @@
             <li>
               <a class="linkedin" href="#s1">About Us</a>
             </li>
-            <!-- <li><a class="linkedin" href="">FAQ</a></li> -->
-            <!-- <a id="faqLink" class="linkedin" href="">FAQ</a> -->
             <li>
               <button id="faqLink" class="linkedin">FAQ</button>
-              <!--faq pop up-->
               <div id="faqPopup" class="faqpopup">
                 <div class="faqpopup-content">
                   <span class="faqclose" id="faqclosePopup">&times;</span>

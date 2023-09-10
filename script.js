@@ -230,17 +230,6 @@ const darkModeCheckbox = document.getElementById("dark-mode-btn");
 darkModeCheckbox.addEventListener("change", () => {
   document.body.classList.toggle("dark");
 });
-// function handleThemeChange() {
-//   const themeCheckbox = document.getElementById('dark-mode-btn');
-//   const selectedTheme = themeCheckbox.checked ? 'light' : 'dark';
-//   localStorage.setItem('theme', selectedTheme);
-//   const body = document.body;
-//   if (selectedTheme === 'dark') {
-//     body.classList.add('dark');
-//   } else {
-//     body.classList.remove('dark');
-//   }
-// }
 
 
 const inputChars = document.querySelector("#input-chars");
@@ -314,3 +303,23 @@ window.addEventListener('click', (event) => {
       ppPopup.style.display = 'none';
   }
 });
+
+//responsive nav menu
+function myFunctionmenu() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += "responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+// function myFunctionmenu1() {
+//   var x = document.getElementById("myTopnav1");
+//   if (x.className === "navright") {
+//     x.className += "responsive";
+//   } else {
+//     x.className = "navright";
+//   }
+// }
+
