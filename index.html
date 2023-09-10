@@ -4,28 +4,94 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="images/triangle.jpg">
     <link rel="stylesheet" href="style.css" />
-    <title>Language Translater</title>
+    <title>IndiTranslate</title>
   </head>
   <body>
+    <!-----toggle button starts------>
     <div class="mode">
       <label class="toggle" for="dark-mode-btn">
         <div class="toggle-track">
           <input type="checkbox" class="toggle-checkbox" id="dark-mode-btn" />
           <span class="toggle-thumb"></span>
-          <img src="images/sun.png" alt="" />
-          <img src="images/moon.png" alt="" />
+          <i class="fa fa-sun-o"></i>
+          <i class="fa fa-moon-o"></i>
         </div>
       </label>
     </div>
+    <!-----toggle button ends------>
+    <!--------------- Navbar Starts------------->
+    <nav class="navbar">
+      <div class="navleft">
+        <div class="nav-icon">
+          <a href="#">
+            <img class="nav-img" src="images\logotrnsprnt.png" alt="IndiTranslate">
+          </a>
+        </div>
+        <div class="nav-section-links topnav"  id="myTopnav">
+          <a href="#s1" class="nav-links active">About Us</a>
+          <a href="" class="nav-links">For Business</a>
+          <div class="dropdown">
+            <button class="dropbtn">
+              <a class="nav-links ff" href="#services">Features&nbsp;<i class="fa fa-caret-down"></i>
+              </a>
+            </button>
+            <div class="dropdown-content">
+              <a href="#features">Text Translation</a>
+              <a href="#ft1">Doc Translation</a>
+              <a href="#ft2">Image Translation</a>
+              <a href="#ft3">Voice Translation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navright"  id="myTopnav1">
+        <button id="signInButton" class="nav-links">Sign In</button>
+
+        <!--sign in form-->
+        <div id="signInPopup" class="popup">
+          <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2 class="form-heading">Sign In</h2>
+            <form>
+              <input type="text" id="username" name="username" placeholder="Username" required>
+              <br>
+              <input type="password" id="password" name="password" placeholder="Password" required>
+              <br>
+              <div class="submit">
+                <button>
+                  <b>Submit</b>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- / -->
+      </div>
+<!---->
+      <a href="javascript:void(0);" class="icon" onclick="myFunctionmenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+<!---->
+    </nav>
+    <!------------------- Navbar Ends ------------->
+    <!------------------- Hero Starts ------------->
+    <section class="hero">
+      <div class="hero-content">
+        <img src="images\triangle.jpg" alt="triangle">
+        <h1 class="tl">Bridging Cultures Through Words</h1>
+        <h2 class="sub-tagline">Welcome to IndiTranslate</h2>
+        <a href="#services" class="explore-button">Explore All Features</a>
+      </div>
+    </section>
+    <!------------------- Hero Ends ------------->
+    <!-----translation section starts------>
+    <div class="heading" id="t2t">Text to Text Translation</div>
     <div class="container">
       <div class="card input-wrapper">
         <div class="from">
@@ -43,13 +109,21 @@
           </div>
         </div>
         <div class="text-area">
-          <textarea
-            id="input-text"
-            cols="30"
-            rows="10"
-            placeholder="Enter your text here"
-          ></textarea>
-          <div class="chars"><span id="input-chars">0</span> / 5000</div>
+          <textarea id="input-text" cols="30" rows="10" placeholder="Enter your text here"></textarea>
+          <div class="rec">
+            <button id="startRecord">
+              <i class="fa fa-microphone"></i>
+            </button>
+            <button id="stopRecord" disabled>
+              <i class="fa fa-stop"></i>
+            </button>
+          </div>
+          <div class="recaudio">
+            <audio id="audioPlayer" controls></audio>
+          </div>
+          <div class="chars">
+            <span id="input-chars">0</span> / 5000
+          </div>
         </div>
         <div class="card-bottom">
           <p>Or choose your document!</p>
@@ -61,11 +135,21 @@
         </div>
       </div>
 
+<!---->
+      <div class="swapbuttont">
       <div class="center">
         <div class="swap-position">
           <ion-icon name="swap-horizontal-outline"></ion-icon>
         </div>
       </div>
+<div class="centert">
+  <button class="translatebutton">
+    <ion-icon name="arrow-forward-outline"></ion-icon>
+  </button>
+</div>
+<div></div>
+     </div>
+<!---->
 
       <div class="card output-wrapper">
         <div class="to">
@@ -73,7 +157,7 @@
           <div class="dropdown-container" id="output-language">
             <div class="dropdown-toggle">
               <ion-icon name="globe-outline"></ion-icon>
-              <span class="selected" data-value="en">Englsih</span>
+              <span class="selected" data-value="en">English</span>
               <ion-icon name="chevron-down-outline"></ion-icon>
             </div>
             <ul class="dropdown-menu">
@@ -82,13 +166,12 @@
             </ul>
           </div>
         </div>
-        <textarea
-          id="output-text"
-          cols="30"
-          rows="10"
-          placeholder="Translated text will appear here"
-          disabled
-        ></textarea>
+        <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled></textarea>
+        <div class="recaudio outputaudio">
+          <audio controls>
+            <source src="">
+          </audio>
+        </div>
         <div class="card-bottom">
           <p>Download as a document!</p>
           <button id="download-btn">
@@ -98,7 +181,260 @@
         </div>
       </div>
     </div>
+    <!-----translation section ends------>
+    <!---- image translation starts---->
+    <div class="heading" id="i2i">Image To Image Translation</div>
+    <div class="container ok">
+      <div class="card input-wrapper">
+        <div class="from">
+          <span class="heading">From :</span>
+          <div class="dropdownn-container dropdown-container" id="inputt-language">
+            <div class="dropdown-toggle">
+              <ion-icon name="globe-outline"></ion-icon>
+              <span class="selected" data-value="auto">Auto Detect</span>
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+            <ul class="dropdown-menu">
+              <li class="option active">DropDown Menu Item 1</li>
+              <li class="option">DropDown Menu Item 2</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-area">
+          <div class="dropimg">Drop your image here</div>
+          <img id="image-preview" src="" alt="" style=" height:auto ;   width:100% " />
+        </div>
+        <div class="card-bottom">
+          <p>Or choose your document!</p>
+          <label for="upload-image">
+            <span id="upload-image-title">Choose File</span>
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            <input type="file" id="upload-image" hidden />
+          </label>
+        </div>
+      </div>
 
+<!---->
+      <div class="swapbuttont">
+      <div class="center">
+        <div class="swap-position">
+          <ion-icon name="swap-horizontal-outline"></ion-icon>
+        </div>
+      </div>
+<div class="centert">
+  <button class="translatebutton">
+    <ion-icon name="arrow-forward-outline"></ion-icon>
+  </button>
+</div>
+<div></div>
+     </div>
+<!---->
+
+      <div class="card output-wrapper">
+        <div class="to">
+          <span class="heading">To :</span>
+          <div class="dropdownn-container dropdown-container" id="outputt-language">
+            <div class="dropdown-toggle">
+              <ion-icon name="globe-outline"></ion-icon>
+              <span class="selected" data-value="en">English</span>
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+            <ul class="dropdown-menu">
+              <li class="option active">DropDown Menu Item 1</li>
+              <li class="option">DropDown Menu Item 2</li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropimg">Translated image will appear her</div>
+        <img id="image-preview1" src="" alt="" style=" height:auto ;   width:100% " />
+        <div class="card-bottom">
+          <p>Download as a document!</p>
+          <button id="download-btn">
+            <span>Download</span>
+            <ion-icon name="cloud-download-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!---- image translation starts---->
+    <!-----About Us starts------>
+    <section id="s1">
+      <div class="aboutus">
+        <div class="tagline">
+          <h1 class="f1">Bridging Cultures through Words</h1>
+        </div>
+        <div class="wlcm">
+          <h3 class="f2">Welcome to IndiTranslate! We're passionate about Indian languages, culture, and connection. Our mission is to make Indian languages accessible, offering accurate and culturally sensitive translations. Join us in celebrating the richness of India's linguistic heritage and bridging cultures through words.</h3>
+        </div>
+        <div class="info">
+          <h3></h3>
+        </div>
+      </div>
+      <div class="image">
+        <img src="images\logobig.jpg" class="img">
+      </div>
+    </section>
+    <!-----About Us Ends------>
+    <!-----Features Starts------>
+    <section class="section services-section" id="services">
+      <div class="containerfeat">
+        <div id="features" class="row">
+          <div class="heading whatwedo">What We Do</div>
+          <!-- feaure box -->
+          <a href="#t2t" class="featurea">
+            <div id="ft1">
+              <div class="feature-box-1">
+                <div class="icon">
+                  <i class="fa fa-comment"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Text Translation</h2>
+                  <p class="desc">Break language barriers effortlessly. Translate text from one language to another with precision and ease. Whether it's for communication, research, or travel, our text translation feature ensures you can understand and be understood across the globe.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+          <!-- feaure box -->
+          <a href="#t2t" class="featurea">
+            <div id="ft2">
+              <div class="feature-box-1">
+                <div class="icon">
+                  <i class="fa fa-file"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Doc Translation</h2>
+                  <p>Seamlessly transform documents into different languages. Effortlessly expand your reach by translating important documents, reports, and content with accuracy. Whether it's business, academic, or personal, our document translation feature simplifies global communication and collaboration.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+          <!-- feaure box -->
+          <a href="#i2i" class="featurea">
+            <div id="ft3">
+              <div class="feature-box-1">
+                <div class="icon">
+                  <i class="fa fa-image"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Image Translation</h2>
+                  <p>Bridge the language gap with visuals. Translate text within images instantly and intuitively. Snap a picture, and our image translation feature converts printed or handwritten text into your preferred language, making information accessible and interactive, whether you're exploring foreign destinations or deciphering multilingual content.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+          <!-- feaure box -->
+          <a href="#t2t" class="featurea">
+            <div id="ft4">
+              <div class="feature-box-1">
+                <div class="icon">
+                  <i class="fa fa-play"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Voice Translation</h2>
+                  <p>Speak and connect globally. Our voice translation feature enables real-time, natural conversations across languages. Simply speak into your device, and it translates your words, fostering seamless communication for travel, business, or connecting with people worldwide. Break language barriers effortlessly with voice translation.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+        </div>
+      </div>
+    </section>
+    <!-----Features Ends------>
+    <!-----Footer Starts------>
+    <footer>
+      <div class="footer-content">
+        <div class="contact-info">
+          <div>
+            <a href="#">
+              <img class="logo" src="images\logotrnsprnt.png" alt="Company Logo">
+            </a>
+          </div>
+          <h2>Contact Us</h2>
+          <a class="linkedin" href="mailto:inditranslate@gmail.com">Email: inditranslate@gmail.com</a>
+          <br>
+          <a class="linkedin" href="tel:+919650534320">Phone: +91 9650534320</a>
+        </div>
+        <div class="team-members">
+          <!-- <h2>Team Members</h2> -->
+          <ul>
+            <li>
+              <a class="linkedin" href="#">Home</a>
+            </li>
+            <li>
+              <a class="linkedin" href="#s1">About Us</a>
+            </li>
+            <li>
+              <button id="faqLink" class="linkedin">FAQ</button>
+              <div id="faqPopup" class="faqpopup">
+                <div class="faqpopup-content">
+                  <span class="faqclose" id="faqclosePopup">&times;</span>
+                  <h2>Frequently Asked Questions</h2>
+                  <ul>
+                    <li>
+                      <strong>Q1:</strong> What is Lorem Ipsum?
+                    </li>
+                    <li>
+                      <strong>Q2:</strong> How can I contact customer support?
+                    </li>
+                    <li>
+                      <strong>Q3:</strong> Is there a mobile app available?
+                    </li>
+                    <!-- Add more FAQ items as needed -->
+                  </ul>
+                </div>
+              </div>
+              <!-- / -->
+            </li>
+            <li>
+              <button id="ppLink" class="linkedin">Privacy Policy</button>
+              <!--Privacy Policy pop up-->
+              <div id="ppPopup" class="pppopup">
+                <div class="pppopup-content">
+                  <span class="ppclose" id="ppclosePopup">&times;</span>
+                  <h2>Privacy Policy</h2>
+                  <ul> This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. </ul>
+                </div>
+              </div>
+              <!-- / -->
+            </li>
+            <li>
+              <a class="linkedin" href="">Copyright</a>
+            </li>
+          </ul>
+        </div>
+        <div class="team-members">
+          <h2>Team Members</h2>
+          <ul>
+            <li>
+              <a class="linkedin" href="https://www.linkedin.com/in/qamarali1" target="_blank">Qamar Ali</a>
+            </li>
+            <li>
+              <a class="linkedin" href="https://www.linkedin.com/in/daksh-suryavanshi" target="_blank">Daksh Suryavanshi</a>
+            </li>
+            <li>
+              <a class="linkedin" href="https://www.linkedin.com/in/shivam-gupta08" target="_blank">Shivam Gupta</a>
+            </li>
+            <li>
+              <a class="linkedin" href="https://www.linkedin.com/in/shruti-goel-a87325246" target="_blank">Shruti Goel</a>
+            </li>
+            <li>
+              <a class="linkedin" href="https://www.linkedin.com/in/radhika-gupta-869546215" target="_blank">Radhika Gupta</a>
+            </li>
+            <li>
+              <a class="linkedin" href="https://www.linkedin.com/in/vedanshi-bansal-69729722b" target="_blank">Vedanshi Bansal</a>
+            </li>
+            <!-- <li>
+              <a class="linkedin suk" href="" target="_blank">Sukriti Goel</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-----Footer Ends------>
     <script src="languages.js"></script>
     <script src="script.js"></script>
   </body>
