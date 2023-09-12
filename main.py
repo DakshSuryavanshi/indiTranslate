@@ -6,17 +6,26 @@ translator = Translator()
 
 @app.route('/', methods=['GET', 'POST'])
 def translate_text():
-    translation = None  # Initialize translation with a default value
-    if request.method == 'POST':
-        text = request.form.get('text')
-        source_lang = request.form.get('source_lang')
+    
+    return render_template("index.html")
+    
+
+
+
+@app.route('/abc', methods=['POST'])
+def transalate():
+    if request.method == "POST":
+        print("cool")
+        text = request.form['leftext']
+        print("text here:", text)
         target_lang = request.form.get('target_lang')
+        print("lang", target_lang)
+        output = Translator().translate(text, dest=target_lang)
+        print("text here:", output.text)
+        return render_template('index.html',output=output.text)
+    else:
+        return render_template('index.html',output=output.text)
 
-        if text and source_lang and target_lang:
-            translation = translator.translate(text, src=source_lang, dest=target_lang)
-
-    return render_template('index.html', translation=translation)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8001)
-

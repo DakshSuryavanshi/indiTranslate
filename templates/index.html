@@ -110,8 +110,9 @@
             </ul>
           </div>
         </div>
+        <form action="/abc" method="post">
         <div class="text-area">
-          <textarea id="input-text" cols="30" rows="10" placeholder="Enter your text here"></textarea>
+          <textarea id="input-text" name="leftext" cols="30" rows="10" placeholder="Enter your text here"></textarea>
           <div class="rec">
             <button id="startRecord">
               <i class="fa fa-microphone"></i>
@@ -145,10 +146,12 @@
         </div>
       </div>
 <div class="centert">
-  <button class="translatebutton">
+  <button class="translatebutton" type="submit">
     <ion-icon name="arrow-forward-outline"></ion-icon>
   </button>
 </div>
+
+<!-- end here -->
 <div></div>
      </div>
 <!---->
@@ -162,13 +165,11 @@
               <span class="selected" data-value="en">English</span>
               <ion-icon name="chevron-down-outline"></ion-icon>
             </div>
-            <ul class="dropdown-menu">
-              <li class="option active">DropDown Menu Item 1</li>
-              <li class="option">DropDown Menu Item 2</li>
-            </ul>
+            <input type="text" name="target_lang" >
           </div>
         </div>
-        <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled></textarea>
+      </form>
+        <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled>{{output}}</textarea>
         <div class="recaudio outputaudio">
           <audio controls>
             <source src="">
