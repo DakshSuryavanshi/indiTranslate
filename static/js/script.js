@@ -227,9 +227,22 @@ downloadBtn.addEventListener("click", (e) => {
 
 //theme
 const darkModeCheckbox = document.getElementById("dark-mode-btn");
+const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
+
+// Check local storage for the theme preference and set it if available
+if (isDarkModeEnabled === "true") {
+  document.body.classList.add("dark");
+  darkModeCheckbox.checked = true;
+}
 
 darkModeCheckbox.addEventListener("change", () => {
-  document.body.classList.toggle("dark");
+  if (darkModeCheckbox.checked) {
+    document.body.classList.add("dark");
+    localStorage.setItem("darkModeEnabled", "true");
+  } else {
+    document.body.classList.remove("dark");
+    localStorage.setItem("darkModeEnabled", "false");
+  }
 });
 
 
