@@ -12,14 +12,14 @@ def translate_text():
 @app.route('/abc', methods=['POST'])
 def transalate():
     if request.method == "POST":
-        print("cool")
+        # print("cool")
         text = request.form.get('leftext')
-        print(text)
-        # target_lang = request.form.get('target_lang')
-        target_lang = "hi"
-        print("lang", target_lang)
-        output = Translator().translate(text, dest=target_lang)
-        print("text here:", output.text)
+        # print(text)
+        output_lang_code = request.form.get('output_lang')
+        input_lang_code = request.form.get('target_lang')
+        # print("lang", output_lang_code)
+        output = Translator().translate(text, src=input_lang_code, dest=output_lang_code)
+        # print("text here:", output)
         return render_template('index.html',output=output.text)
     else:
         return render_template('index.html',output=output.text)

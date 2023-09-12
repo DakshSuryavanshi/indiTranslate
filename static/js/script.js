@@ -7,73 +7,32 @@ document.addEventListener("DOMContentLoaded", function() {
   }, 200);
 });
 
-//input language card
-const dropdowns = document.querySelectorAll(".dropdown-container");
-const inputLanguageDropdown = document.querySelector("#input-language");
-const outputLanguageDropdown = document.querySelector("#output-language");
 
-function populateDropdown(dropdown, options) {
-  dropdown.querySelector("ul").innerHTML = "";
+// Function to populate a select element with options
+function populateSelect(select, options) {
+  select.innerHTML = "";
   options.forEach((option) => {
-      const li = document.createElement("li");
-      const title = option.name + " (" + option.native + ")";
-      li.innerHTML = title;
-      li.dataset.value = option.code;
-      li.classList.add("option");
-      dropdown.querySelector("ul").appendChild(li);
+      const optionElement = document.createElement("option");
+      optionElement.value = option.code;
+      optionElement.textContent = option.name + " (" + option.native + ")";
+      select.appendChild(optionElement);
   });
 }
 
-populateDropdown(inputLanguageDropdown, languages);
-populateDropdown(outputLanguageDropdown,languages);
+// Input language card
+const inputLanguageDropdown = document.querySelector("#input-language select");
+const outputLanguageDropdown = document.querySelector("#output-language select");
 
+populateSelect(inputLanguageDropdown, languages);
+populateSelect(outputLanguageDropdown, languages);
 
-//output language card
-const dropdownss = document.querySelectorAll(".dropdownn-container");
-const inputLanguageDropdownn = document.querySelector("#inputt-language");
-const outputLanguageDropdownn = document.querySelector("#outputt-language");
+// Output language card
+const inputLanguageDropdownn = document.querySelector("#inputt-language select");
+const outputLanguageDropdownn = document.querySelector("#outputt-language select");
 
-function populateDropdown(dropdownn, options) {
-  dropdownn.querySelector("ul").innerHTML = "";
-  options.forEach((option) => {
-      const li = document.createElement("li");
-      const title = option.name + " (" + option.native + ")";
-      li.innerHTML = title;
-      li.dataset.value = option.code;
-      li.classList.add("option");
-      dropdownn.querySelector("ul").appendChild(li);
-  });
-}
+populateSelect(inputLanguageDropdownn, languages);
+populateSelect(outputLanguageDropdownn, languages);
 
-populateDropdown(inputLanguageDropdownn, languages);
-populateDropdown(outputLanguageDropdownn, languages);
-
-
-
-dropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("click", (e) => {
-      dropdown.classList.toggle("active");
-  });
-
-  dropdown.querySelectorAll(".option").forEach((item) => {
-      item.addEventListener("click", (e) => {
-          dropdown.querySelectorAll(".option").forEach((item) => {
-              item.classList.remove("active");
-          });
-          item.classList.add("active");
-          const selected = dropdown.querySelector(".selected");
-          selected.innerHTML = item.innerHTML;
-          selected.dataset.value = item.dataset.value;
-      });
-  });
-});
-document.addEventListener("click", (e) => {
-  dropdowns.forEach((dropdown) => {
-      if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove("active");
-      }
-  });
-});
 
 //swap button
 const swapBtn = document.querySelector(".swap-position"),
@@ -331,12 +290,4 @@ function myFunctionmenu() {
   }
 }
 
-// function myFunctionmenu1() {
-//   var x = document.getElementById("myTopnav1");
-//   if (x.className === "navright") {
-//     x.className += "responsive";
-//   } else {
-//     x.className = "navright";
-//   }
-// }
 
