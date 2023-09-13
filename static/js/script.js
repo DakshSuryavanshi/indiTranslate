@@ -34,27 +34,32 @@ populateSelect(inputLanguageDropdownn, languages);
 populateSelect(outputLanguageDropdownn, languages);
 
 
-//swap button
-const swapBtn = document.querySelector(".swap-position"),
-  inputLanguage = inputLanguageDropdown.querySelector(".selected"),
-  outputLanguage = outputLanguageDropdown.querySelector(".selected"),
-  inputTextElem = document.querySelector("#input-text"),
-  outputTextElem = document.querySelector("#output-text");
+// Swap button
+const swapBtn = document.querySelector(".swap-position");
+const inputLanguage = inputLanguageDropdown.querySelector("option:checked");
+const outputLanguage = outputLanguageDropdown.querySelector("option:checked");
+const inputTextElem = document.querySelector("#input-text");
+const outputTextElem = document.querySelector("#output-text");
 
 swapBtn.addEventListener("click", (e) => {
-  const temp = inputLanguage.innerHTML;
-  inputLanguage.innerHTML = outputLanguage.innerHTML;
-  outputLanguage.innerHTML = temp;
+  // Swap selected options in the dropdowns
+  const tempInputValue = inputLanguage.value;
+  inputLanguage.value = outputLanguage.value;
+  outputLanguage.value = tempInputValue;
 
-  const tempValue = inputLanguage.dataset.value;
-  inputLanguage.dataset.value = outputLanguage.dataset.value;
-  outputLanguage.dataset.value = tempValue;
+  // Swap displayed text in the dropdowns
+  const tempInputText = inputLanguage.textContent;
+  inputLanguage.textContent = outputLanguage.textContent;
+  outputLanguage.textContent = tempInputText;
 
-  const tempInputText = inputTextElem.value;
+  // Swap input and output text
+  const tempInputTextValue = inputTextElem.value;
   inputTextElem.value = outputTextElem.value;
-  outputTextElem.value = tempInputText;
+  outputTextElem.value = tempInputTextValue;
 });
 
+
+//upload doc
 const uploadDocument = document.querySelector("#upload-document"),
   uploadTitle = document.querySelector("#upload-title");
 
