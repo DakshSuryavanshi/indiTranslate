@@ -104,6 +104,7 @@ uploadDocument.addEventListener("change", (e) => {
   }
 });
 
+//audio record
 const startRecordButton = document.getElementById('startRecord');
 const stopRecordButton = document.getElementById('stopRecord');
 const audioPlayer = document.getElementById('audioPlayer');
@@ -171,9 +172,29 @@ uploadImageInput.addEventListener("change", (e) => {
 });
 
 
-const downloadBtn = document.querySelector("#download-btn");
+//download pdf button
+const downloadBtnpdf = document.querySelector("#download-btn-pdf");
 
-downloadBtn.addEventListener("click", (e) => {
+downloadBtnpdf.addEventListener("click", (e) => {
+  const outputText = outputTextElem.value;
+  const outputLanguage =
+      outputLanguageDropdown.querySelector(".selected").dataset.value;
+  if (outputText) {
+      const blob = new Blob([outputText], {
+          type: "text/plain"
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.download = `translated-to-${outputLanguage}.txt`;
+      a.href = url;
+      a.click();
+  }
+});
+
+//download image button
+const downloadBtnimg = document.querySelector("#download-btn-img");
+
+downloadBtnimg.addEventListener("click", (e) => {
   const outputText = outputTextElem.value;
   const outputLanguage =
       outputLanguageDropdown.querySelector(".selected").dataset.value;
@@ -221,29 +242,8 @@ darkModeCheckbox.addEventListener("change", () => {
   }
 });
 
-// //theme
-// const darkModeCheckbox = document.getElementById("dark-mode-btn");
-// const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
 
-// // Check local storage for the theme preference and set it if available
-// if (isDarkModeEnabled === "true") {
-//   document.body.classList.add("dark");
-//   darkModeCheckbox.checked = true;
-// }
-
-// darkModeCheckbox.addEventListener("change", () => {
-//   if (darkModeCheckbox.checked) {
-//     document.body.classList.add("dark");
-//     localStorage.setItem("darkModeEnabled", "true");
-//   } else {
-//     document.body.classList.remove("dark");
-//     localStorage.setItem("darkModeEnabled", "false");
-//   }
-// });
-
-
-
-
+//char count
 const inputChars = document.querySelector("#input-chars");
 
 inputTextElem.addEventListener("input", (e) => {
@@ -345,3 +345,24 @@ function myFunctionmenu() {
       x.className = "topnav";
   }
 }
+
+//translate reload
+document.getElementById('form').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent the form from submitting
+
+  const formData = new FormData(this);
+
+  // Send a POST request to your Flask endpoint
+  fetch('/translate', {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.json()) // Parse JSON response
+      .then(data => {
+          // Handle the response data and set it as the value of #output-text
+          document.getElementById('output-text').value = data.output;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+});

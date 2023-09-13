@@ -90,7 +90,7 @@
     <!------------------- Hero Ends ------------->
     <!-----translation section starts------>
     <div class="heading" id="t2t">Text to Text Translation</div>
-    <form action="/abc" method="post" id="form">
+    <form action="/http://127.0.0.1:8001" method="post" id="form">
       <div class="container">
         <div class="card input-wrapper">
           <div class="from">
@@ -157,7 +157,7 @@
               </div>
             </div>
           </div>
-          <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled>{{output}}</textarea>
+          <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled></textarea>
           <div class="recaudio outputaudio">
             <audio controls>
               <source src="">
@@ -165,9 +165,13 @@
           </div>
           <div class="card-bottom">
             <p>Download as a document!</p>
-            <button id="download-btn">
-              <span>Download</span>
-              <ion-icon name="cloud-download-outline"></ion-icon>
+            <button id="download-btn-pdf">
+              <div class="tf">
+                <!--tf-->
+                <span>Download</span>
+                <ion-icon name="cloud-download-outline"></ion-icon>
+              </div>
+              <!--tf-->
             </button>
           </div>
         </div>
@@ -233,7 +237,7 @@
         <img id="image-preview1" src="" alt="" style=" height:auto ;   width:100% " />
         <div class="card-bottom">
           <p>Download as a document!</p>
-          <button id="download-btn">
+          <button id="download-btn-img">
             <span>Download</span>
             <ion-icon name="cloud-download-outline"></ion-icon>
           </button>
@@ -268,8 +272,9 @@
           <a href="#t2t" class="featurea">
             <div id="ft1">
               <div class="feature-box-1">
-                  <div class="bubble">
-                  <i class="fa fa-comment"></i></div>
+                <div class="bubble">
+                  <i class="fa fa-comment"></i>
+                </div>
                 <div class="feature-content">
                   <h2>Text Translation</h2>
                   <p class="desc">Break language barriers effortlessly. Translate text from one language to another with precision and ease. Whether it's for communication, research, or travel, our text translation feature ensures you can understand and be understood across the globe.</p>
@@ -576,7 +581,7 @@
             <li>
               <i class="fa fa-circle"></i>
               <button id="crLink" class="linkedin">Copyright</button>
-              <!--Privacy Policy pop up-->
+              <!--Copyright pop up-->
               <div id="crPopup" class="crpopup">
                 <div class="crpopup-content">
                   <span class="crclose" id="crclosePopup">&times;</span>
