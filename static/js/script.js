@@ -23,15 +23,15 @@ function populateSelect(select, options) {
 const inputLanguageDropdown = document.querySelector("#input-language select");
 const outputLanguageDropdown = document.querySelector("#output-language select");
 
-populateSelect(inputLanguageDropdown, languages);
-populateSelect(outputLanguageDropdown, languages);
+populateSelect(inputLanguageDropdown, languagesInput);
+populateSelect(outputLanguageDropdown, languagesOutput);
 
 // Output language card
 const inputLanguageDropdownn = document.querySelector("#inputt-language select");
 const outputLanguageDropdownn = document.querySelector("#outputt-language select");
 
-populateSelect(inputLanguageDropdownn, languages);
-populateSelect(outputLanguageDropdownn, languages);
+populateSelect(inputLanguageDropdownn, languagesInput); // You can use the same input languages for the output card if needed
+populateSelect(outputLanguageDropdownn, languagesOutput); // Use the same output languages for the output card
 
 
 // Swap button
@@ -189,41 +189,57 @@ downloadBtn.addEventListener("click", (e) => {
   }
 });
 
+
+
+//theme
+// Check if the user has already set a custom theme preference
+const userThemePreference = localStorage.getItem("darkModeEnabled");
+
+// Check if the user's operating system prefers dark mode
+const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+// Determine the initial theme based on user preference and OS preference
+const isDarkModeEnabled = userThemePreference === "true" || (userThemePreference === null && prefersDarkMode);
+
+// Get the dark mode checkbox element
 const darkModeCheckbox = document.getElementById("dark-mode-btn");
 
-// Function to set the theme based on the user's preference
-function setThemeBasedOnPreference() {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.classList.add("dark");
-    darkModeCheckbox.checked = true;
-    localStorage.setItem("darkModeEnabled", "true");
-  } else {
-    document.body.classList.remove("dark");
-    darkModeCheckbox.checked = false;
-    localStorage.setItem("darkModeEnabled", "false");
-  }
+// Set the initial theme
+if (isDarkModeEnabled) {
+  document.body.classList.add("dark");
+  darkModeCheckbox.checked = true;
 }
 
-// Check local storage for the theme preference and set it if available
-const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
-if (isDarkModeEnabled === "true" || isDarkModeEnabled === "false") {
-  setThemeBasedOnPreference();
-} else {
-  // If no preference is stored in local storage, set the theme based on device preference
-  setThemeBasedOnPreference();
-}
-
+// Add an event listener to handle theme changes
 darkModeCheckbox.addEventListener("change", () => {
   if (darkModeCheckbox.checked) {
-    document.body.classList.add("dark");
-    localStorage.setItem("darkModeEnabled", "true");
+      document.body.classList.add("dark");
+      localStorage.setItem("darkModeEnabled", "true");
   } else {
-    document.body.classList.remove("dark");
-    localStorage.setItem("darkModeEnabled", "false");
+      document.body.classList.remove("dark");
+      localStorage.setItem("darkModeEnabled", "false");
   }
 });
 
+// //theme
+// const darkModeCheckbox = document.getElementById("dark-mode-btn");
+// const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
 
+// // Check local storage for the theme preference and set it if available
+// if (isDarkModeEnabled === "true") {
+//   document.body.classList.add("dark");
+//   darkModeCheckbox.checked = true;
+// }
+
+// darkModeCheckbox.addEventListener("change", () => {
+//   if (darkModeCheckbox.checked) {
+//     document.body.classList.add("dark");
+//     localStorage.setItem("darkModeEnabled", "true");
+//   } else {
+//     document.body.classList.remove("dark");
+//     localStorage.setItem("darkModeEnabled", "false");
+//   }
+// });
 
 
 
@@ -324,10 +340,8 @@ window.addEventListener('click', (event) => {
 function myFunctionmenu() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
-    x.className += "responsive";
+      x.className += "responsive";
   } else {
-    x.className = "topnav";
+      x.className = "topnav";
   }
 }
-
-
