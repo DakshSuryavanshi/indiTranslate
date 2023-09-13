@@ -285,6 +285,26 @@ window.addEventListener('click', (event) => {
   }
 });
 
+//Copyright pop up
+const crLink = document.getElementById('crLink');
+const crPopup = document.getElementById('crPopup');
+const crclosePopup = document.getElementById('crclosePopup');
+
+crLink.addEventListener('click', (event) => {
+  crPopup.style.display = 'block';
+});
+
+crclosePopup.addEventListener('click', () => {
+  crPopup.style.display = 'none';
+});
+
+// Close the popup if the user clicks outside of it
+window.addEventListener('click', (event) => {
+  if (event.target === crPopup) {
+      crPopup.style.display = 'none';
+  }
+});
+
 //responsive nav menu
 function myFunctionmenu() {
   var x = document.getElementById("myTopnav");
