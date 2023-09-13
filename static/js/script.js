@@ -189,14 +189,28 @@ downloadBtn.addEventListener("click", (e) => {
   }
 });
 
-//theme
 const darkModeCheckbox = document.getElementById("dark-mode-btn");
-const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
+
+// Function to set the theme based on the user's preference
+function setThemeBasedOnPreference() {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark");
+    darkModeCheckbox.checked = true;
+    localStorage.setItem("darkModeEnabled", "true");
+  } else {
+    document.body.classList.remove("dark");
+    darkModeCheckbox.checked = false;
+    localStorage.setItem("darkModeEnabled", "false");
+  }
+}
 
 // Check local storage for the theme preference and set it if available
-if (isDarkModeEnabled === "true") {
-  document.body.classList.add("dark");
-  darkModeCheckbox.checked = true;
+const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
+if (isDarkModeEnabled === "true" || isDarkModeEnabled === "false") {
+  setThemeBasedOnPreference();
+} else {
+  // If no preference is stored in local storage, set the theme based on device preference
+  setThemeBasedOnPreference();
 }
 
 darkModeCheckbox.addEventListener("change", () => {
@@ -208,6 +222,7 @@ darkModeCheckbox.addEventListener("change", () => {
     localStorage.setItem("darkModeEnabled", "false");
   }
 });
+
 
 
 
