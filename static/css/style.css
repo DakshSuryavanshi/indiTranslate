@@ -1009,6 +1009,10 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  background-color: #AEC3B0;
+}
+
+.dark .home-container{
   background-color: #124559;
 }
 
@@ -1016,7 +1020,6 @@ button:hover {
     position: relative;
     /* width: 220px; */
     /* height: 220px; */
-    background-color: #598392;
     padding: 30px;
     border-radius: 50%;
     box-shadow: -5px 8px 45px rgba(51, 51, 51, 0.126);
@@ -1025,6 +1028,11 @@ button:hover {
     width: 200px;
     height: 200px;
     /* margin: 10px; */
+    background-color:rgb(200, 212, 200);
+}
+
+.dark .profile-card{
+    background-color: #598392;
 }
 
 .profile-card:hover {
