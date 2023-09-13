@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="languages.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="static/images/triangle.jpg">
-    <script src="{{ url_for('static', filename='js/languages.js') }}"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+    <link rel="icon" href="static/images/triangle.jpg">
     <title>IndiTranslate</title>
   </head>
   <body>
@@ -270,9 +268,8 @@
           <a href="#t2t" class="featurea">
             <div id="ft1">
               <div class="feature-box-1">
-                <div class="icon">
-                  <i class="fa fa-comment"></i>
-                </div>
+                  <div class="bubble">
+                  <i class="fa fa-comment"></i></div>
                 <div class="feature-content">
                   <h2>Text Translation</h2>
                   <p class="desc">Break language barriers effortlessly. Translate text from one language to another with precision and ease. Whether it's for communication, research, or travel, our text translation feature ensures you can understand and be understood across the globe.</p>
@@ -285,7 +282,7 @@
           <a href="#t2t" class="featurea">
             <div id="ft2">
               <div class="feature-box-1">
-                <div class="icon">
+                <div class="bubble">
                   <i class="fa fa-file"></i>
                 </div>
                 <div class="feature-content">
@@ -300,7 +297,7 @@
           <a href="#i2i" class="featurea">
             <div id="ft3">
               <div class="feature-box-1">
-                <div class="icon">
+                <div class="bubble">
                   <i class="fa fa-image"></i>
                 </div>
                 <div class="feature-content">
@@ -315,7 +312,7 @@
           <a href="#t2t" class="featurea">
             <div id="ft4">
               <div class="feature-box-1">
-                <div class="icon">
+                <div class="bubble">
                   <i class="fa fa-play"></i>
                 </div>
                 <div class="feature-content">
@@ -638,6 +635,7 @@
       </div>
     </footer>
     <!-----Footer Ends------>
+    <script src="{{ url_for('static', filename='js/languages.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

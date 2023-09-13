@@ -941,7 +941,7 @@ button:hover {
   -webkit-transition: ease all 0.35s;
   transition: ease all 0.35s;
 }
-.feature-box-1 .icon {
+.feature-box-1 .bubble {
   width: 70px;
   height: 70px;
   line-height: 70px;
@@ -952,11 +952,11 @@ button:hover {
   margin-bottom: 22px;
   font-size: 27px;
 }
-/* .dark .feature-box-1 .icon{
+/* .dark .feature-box-1 .bubble{
     background: ;
     color: ;
   } */
-.feature-box-1 .icon i {
+.feature-box-1 .bubble i {
   line-height: 70px;
 }
 .feature-box-1 p {
