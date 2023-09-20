@@ -59,50 +59,22 @@ swapBtn.addEventListener("click", (e) => {
 });
 
 
-//upload doc
-const uploadDocument = document.querySelector("#upload-document"),
-  uploadTitle = document.querySelector("#upload-title");
+// Upload doc
+const uploadDocument = document.querySelector("#upload-document");
+const uploadTitle = document.querySelector("#upload-title");
+// const inputTextElem = document.querySelector("#input-text");
 
 uploadDocument.addEventListener("change", (e) => {
   const file = e.target.files[0];
-  if (file.type === "application/pdf") {
-      uploadTitle.innerHTML = file.name;
 
-      // Use pdf.js to extract text from the PDF file
-      const reader = new FileReader();
-      reader.readAsArrayBuffer(file);
-      reader.onload = async (e) => {
-          const arrayBuffer = e.target.result;
-          const pdf = await pdfjsLib.getDocument({
-              data: arrayBuffer
-          }).promise;
-          const text = [];
-          for (let i = 1; i <= pdf.numPages; i++) {
-              const page = await pdf.getPage(i);
-              const pageText = await page.getTextContent();
-              pageText.items.forEach((item) => {
-                  text.push(item.str);
-              });
-          }
-          inputTextElem.value = text.join("\n");
-      };
-  } else if (
-      file.type === "text/plain" ||
-      file.type === "application/msword" ||
-      file.type ===
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-      // Handle other supported file types
+  if (file.type === "text/plain" || file.type === "application/msword" || file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.type === "application/pdf") {
+      // Handle supported file types
       uploadTitle.innerHTML = file.name;
-      const reader = new FileReader();
-      reader.readAsText(file);
-      reader.onload = (e) => {
-          inputTextElem.value = e.target.result;
-      };
   } else {
       alert("Please upload a valid file");
   }
 });
+
 
 //audio record
 const startRecordButton = document.getElementById('startRecord');
@@ -365,4 +337,56 @@ document.getElementById('form').addEventListener('submit', function(e) {
       .catch(error => {
           console.error('Error:', error);
       });
+});
+
+
+//extracted text from doc to input-text textarea
+uploadDocument.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+
+  if (file.type === "text/plain" || file.type === "application/msword" || file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.type === "application/pdf") {
+      uploadTitle.innerHTML = file.name;
+
+      // Send an AJAX request to the Flask server to get the extracted text
+      const formData = new FormData();
+      formData.append("file", file);
+
+      fetch("/extract", {
+              method: "POST",
+              body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+              inputTextElem.value = data.extracted_text; // Set the value of the textarea
+          })
+          .catch(error => {
+              console.error("Error:", error);
+          });
+  } else {
+      alert("Please upload a valid file");
+  }
+});
+
+// JavaScript code for sending the AJAX request
+$(document).ready(function() {
+  $("#download-btn-pdf").click(function() {
+      // Get the text from the textarea
+      var text = $("#output-text").val();
+
+      // Send an AJAX POST request to the /convert_to_pdf route
+      $.ajax({
+          type: "POST",
+          url: "/convert_to_pdf",
+          data: {
+              "output-text": text
+          },
+          success: function() {
+              // Redirect to the PDF download route
+              window.location.href = "/download_pdf";
+          },
+          error: function() {
+              alert("Error occurred while converting to PDF.");
+          }
+      });
+  });
 });

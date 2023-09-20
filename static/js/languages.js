@@ -50,4 +50,10 @@ var languagesOutput = [{
   native: "தமிழ்",
   code: "ta",
 },
+{
+  no: "7",
+  name: "Telugu",
+  native: "తెలుగు",
+  code: "te",
+},
 ];

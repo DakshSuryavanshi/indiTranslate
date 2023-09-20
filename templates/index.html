@@ -96,9 +96,11 @@
           <div class="from">
             <span class="heading">From :</span>
             <div class="dropdown-container" id="input-language">
+              <!-- intput-language -->
               <div class="dropdown-toggle">
                 <ion-icon name="globe-outline"></ion-icon>
                 <select class="selected dropdown-menu" data-value="auto" name="target_lang">
+                  <!-- target_lang -->
                   <option value="auto">Auto Detect</option>
                 </select>
               </div>
@@ -106,16 +108,20 @@
           </div>
           <div class="text-area">
             <textarea id="input-text" cols="30" rows="10" placeholder="Enter your text here" name="leftext"></textarea>
+            <!-- left input-text area -->
             <div class="rec">
               <button id="startRecord">
+                <!-- start record button-->
                 <i class="fa fa-microphone"></i>
               </button>
               <button id="stopRecord" disabled>
+                <!-- stop record button -->
                 <i class="fa fa-stop"></i>
               </button>
             </div>
             <div class="recaudio">
               <audio id="audioPlayer" controls></audio>
+              <!-- input audio recorded -->
             </div>
             <div class="chars">
               <span id="input-chars">0</span> / 5000
@@ -127,6 +133,7 @@
               <span id="upload-title">Choose File</span>
               <ion-icon name="cloud-upload-outline"></ion-icon>
               <input type="file" id="upload-document" hidden />
+              <!-- name="file" -->
             </label>
           </div>
         </div>
@@ -149,18 +156,22 @@
           <div class="to">
             <span class="heading">To :</span>
             <div class="dropdown-container" id="output-language">
+              <!-- output-language -->
               <div class="dropdown-toggle">
                 <ion-icon name="globe-outline"></ion-icon>
                 <select class="selected dropdown-menu" data-value="en" name="output_lang">
+                  <!-- output_lang -->
                   <option value="en">English</option>
                 </select>
               </div>
             </div>
           </div>
           <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled></textarea>
+          <!-- output-text area -->
           <div class="recaudio outputaudio">
             <audio controls>
               <source src="">
+              <!-- output audio -->
             </audio>
           </div>
           <div class="card-bottom">
@@ -170,8 +181,8 @@
                 <!--tf-->
                 <span>Download</span>
                 <ion-icon name="cloud-download-outline"></ion-icon>
+                <!--tf-->
               </div>
-              <!--tf-->
             </button>
           </div>
         </div>
@@ -185,9 +196,11 @@
         <div class="from">
           <span class="heading">From :</span>
           <div class="dropdownn-container dropdown-container" id="inputt-language">
+            <!-- inputt-language -->
             <div class="dropdown-toggle">
               <ion-icon name="globe-outline"></ion-icon>
               <select class="selected dropdown-menu" data-value="auto" name="target_lang">
+                <!-- target_lang -->
                 <option value="auto">Auto Detect</option>
               </select>
             </div>
@@ -203,6 +216,7 @@
             <span id="upload-image-title">Choose File</span>
             <ion-icon name="cloud-upload-outline"></ion-icon>
             <input type="file" id="upload-image" hidden />
+            <!-- input image -->
           </label>
         </div>
       </div>
@@ -215,6 +229,7 @@
         </div>
         <div class="centert">
           <button class="translatebutton">
+            <!-- tanslate button -->
             <ion-icon name="arrow-forward-outline"></ion-icon>
           </button>
         </div>
@@ -225,9 +240,11 @@
         <div class="to">
           <span class="heading">To :</span>
           <div class="dropdownn-container dropdown-container" id="outputt-language">
+            <!-- outputt-language -->
             <div class="dropdown-toggle">
               <ion-icon name="globe-outline"></ion-icon>
-              <select class="selected dropdown-menu" data-value="auto" name="target_lang">
+              <select class="selected dropdown-menu" data-value="auto" name="output_lang">
+                <!-- output_lang -->
                 <option value="en">English</option>
               </select>
             </div>
@@ -235,9 +252,11 @@
         </div>
         <div class="dropimg">Translated image will appear her</div>
         <img id="image-preview1" src="" alt="" style=" height:auto ;   width:100% " />
+        <!-- output image -->
         <div class="card-bottom">
           <p>Download as a document!</p>
           <button id="download-btn-img">
+            <!-- download image button -->
             <span>Download</span>
             <ion-icon name="cloud-download-outline"></ion-icon>
           </button>
@@ -640,6 +659,7 @@
       </div>
     </footer>
     <!-----Footer Ends------>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='js/languages.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>

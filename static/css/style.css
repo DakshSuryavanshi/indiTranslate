@@ -807,6 +807,10 @@ button:hover {
 
 .tf {
   display: flex;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .audio{
@@ -1121,6 +1125,11 @@ button:hover {
 .social-links i:hover {
   color: #598392;
 }
+
+.dark .social-links i:hover {
+  color: #aec3b0;
+}
+
 /* Add styles for smaller screens */
 @media (max-width: 1229px) {
   .home-container {
