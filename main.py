@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify, Response
-from googletrans import Translator
+from flask import Flask, render_template, request, jsonify, Response #pip install flask
+from googletrans import Translator # pip install googletrans==3.1.0a0
 import os
-from docx import Document
-from PyPDF2 import PdfReader
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from docx import Document # pip install python-docx
+from PyPDF2 import PdfReader # pip install PyPDF2
+from reportlab.lib.pagesizes import letter # pip install reportlab
+from reportlab.pdfgen import canvas # pip install reportlab
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 translator = Translator()
