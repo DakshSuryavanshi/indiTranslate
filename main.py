@@ -5,6 +5,8 @@ from docx import Document # pip install python-docx
 from PyPDF2 import PdfReader # pip install PyPDF2
 from reportlab.lib.pagesizes import letter # pip install reportlab
 from reportlab.pdfgen import canvas # pip install reportlab
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 translator = Translator()
@@ -73,9 +75,9 @@ def text_to_pdf(text):
     output_pdf_path = "output.pdf"
 
     c = canvas.Canvas(output_pdf_path, pagesize=letter)
-    c.setFont("Helvetica", 12)
-    # pdfmetrics.registerFont(TTFont("NotoSans", "path/to/NotoSans-Regular.ttf"))  # Replace with the actual font path, https://www.google.com/get/noto/
-    # c.setFont("NotoSans", 12)  # Use the registered font
+    # c.setFont("Helvetica", 12)
+    pdfmetrics.registerFont(TTFont("NotoSans", "Noto_Sans/NotoSans-Regular.ttf"))  # https://www.google.com/get/noto/
+    c.setFont("NotoSans", 12)  # Use the registered font
     lines = text.split("\n")
 
     for line in lines:
