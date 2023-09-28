@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+    <link rel="icon" href="static/images/triangle.jpg">
+    <title>IndiTranslate</title>
+  </head>
+  <body>
+    <!-----toggle button starts------>
+    <div class="mode">
+      <label class="toggle" for="dark-mode-btn">
+        <div class="toggle-track">
+          <input type="checkbox" class="toggle-checkbox" id="dark-mode-btn" />
+          <span class="toggle-thumb"></span>
+          <i class="fa fa-sun-o"></i>
+          <i class="fa fa-moon-o"></i>
+        </div>
+      </label>
+    </div>
+    <!-----toggle button ends------>
+    <!--------------- Navbar Starts------------->
+    <nav class="navbar">
+      <div class="navleft">
+        <div class="nav-icon">
+          <a href="#">
+            <img class="nav-img" src="static/images/logotrnsprnt.png" alt="IndiTranslate">
+          </a>
+        </div>
+        <div class="nav-section-links topnav" id="myTopnav">
+          <a href="#s1" class="nav-links active">About Us</a>
+          <a href="" class="nav-links">For Business</a>
+          <div class="dropdown">
+            <button class="dropbtn">
+              <a class="nav-links ff" href="#services">Features&nbsp; <i class="fa fa-caret-down"></i>
+              </a>
+            </button>
+            <div class="dropdown-content">
+              <a href="#t2t">Text Translation</a>
+              <a href="#t2t">Doc Translation</a>
+              <a href="#i2i">Image Translation</a>
+              <a href="#a2a">Voice Translation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navright" id="myTopnav1">
+        <button id="signInButton" class="nav-links">Sign In</button>
+        <!--sign in form-->
+        <div id="signInPopup" class="popup">
+          <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2 class="form-heading">Sign In</h2>
+            <form>
+              <input type="text" id="username" name="username" placeholder="Username" required>
+              <br>
+              <input type="password" id="password" name="password" placeholder="Password" required>
+              <br>
+              <div class="submit">
+                <button>
+                  <b>Submit</b>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- / -->
+      </div>
+      <!---->
+      <a href="javascript:void(0);" class="icon" onclick="myFunctionmenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+      <!---->
+    </nav>
+    <!------------------- Navbar Ends ------------->
+    <!------------------- Hero Starts ------------->
+    <section class="hero">
+      <div class="hero-content">
+        <img src="static/images/triangle.jpg" alt="triangle">
+        <h1 class="tl">Bridging Cultures Through Words</h1>
+        <h2 class="sub-tagline">Welcome to IndiTranslate</h2>
+        <a href="#services" class="explore-button">Explore All Features</a>
+      </div>
+    </section>
+    <!------------------- Hero Ends ------------->
+    <!-----translation section starts------>
+    <div class="heading" id="t2t">Text to Text Translation</div>
+    <form action="/http://127.0.0.1:8001" method="post" id="form">
+      <div class="container">
+        <div class="card input-wrapper">
+          <div class="from">
+            <span class="heading">From :</span>
+            <div class="dropdown-container" id="input-language">
+              <!-- intput-language -->
+              <div class="dropdown-toggle">
+                <ion-icon name="globe-outline"></ion-icon>
+                <select class="selected dropdown-menu" data-value="auto" name="target_lang">
+                  <!-- target_lang -->
+                  <option value="auto">Auto Detect</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="text-area">
+            <textarea id="input-text" cols="30" rows="10" placeholder="Enter your text here" name="leftext"></textarea>
+            <!-- left input-text area -->
+            <div class="chars">
+              <span id="input-chars">0</span> / 5000
+            </div>
+          </div>
+          <div class="card-bottom">
+            <p>Or choose your document!</p>
+            <label for="upload-document">
+              <span id="upload-title">Choose File</span>
+              <ion-icon name="cloud-upload-outline"></ion-icon>
+              <input type="file" id="upload-document" hidden />
+              <!-- name="file" -->
+            </label>
+          </div>
+        </div>
+        <!---->
+        <div class="swapbuttont">
+          <div class="center">
+            <div class="swap-position">
+              <ion-icon name="swap-horizontal-outline"></ion-icon>
+            </div>
+          </div>
+          <div class="centert">
+            <button class="translatebutton" id="tbtn">
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+          <div class="useless"></div>
+        </div>
+        <!---->
+        <div class="card output-wrapper">
+          <div class="to">
+            <span class="heading">To :</span>
+            <div class="dropdown-container" id="output-language">
+              <!-- output-language -->
+              <div class="dropdown-toggle">
+                <ion-icon name="globe-outline"></ion-icon>
+                <select class="selected dropdown-menu" data-value="en" name="output_lang">
+                  <!-- output_lang -->
+                  <option value="en">English</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <textarea id="output-text" cols="30" rows="10" placeholder="Translated text will appear here" disabled></textarea>
+          <!-- output-text area -->
+          <div class="card-bottom">
+            <p>Download as a document!</p>
+            <button id="download-btn-pdf">
+              <div class="tf">
+                <!--tf-->
+                <span>Download</span>
+                <ion-icon name="cloud-download-outline"></ion-icon>
+                <!--tf-->
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+   <!--</form>-->
+   
+    <!-----translation section ends------>
+    <!-----translation audio section starts------>
+    <div class="heading" id="a2a">Audio to Audio Translation</div>
+   <!--<form action="/http://127.0.0.1:8001" method="post" id="formm">-->
+      <div class="container">
+        <div class="card input-wrapper">
+          <div class="from">
+            <span class="heading">From :</span>
+            <div class="dropdown-container" id="inputtt-language">
+              <!-- intput-language -->
+              <div class="dropdown-toggle">
+                <ion-icon name="globe-outline"></ion-icon>
+                <select class="selected dropdown-menu" data-value="auto" name="target_lang">
+                  <!-- target_lang -->
+                  <option value="auto">Auto Detect</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="text-area">
+            
+            <!-- left input-text area -->
+            <div class="rec">
+              <button id="startRecord">
+                <!-- start record button-->
+                <i class="fa fa-microphone"></i>
+              </button>
+              <button id="stopRecord" disabled>
+                <!-- stop record button -->
+                <i class="fa fa-stop"></i>
+              </button>
+            </div>
+            <div class="recaudio">
+              <audio id="audioPlayer" controls></audio>
+              <!-- input audio recorded -->
+            </div>
+          </div>
+          <div class="card-bottom">
+            <p>Or choose your audio!</p>
+            <label for="upload-audio">
+              <span id="audio-title">Choose Audio File</span>
+              <ion-icon name="cloud-upload-outline"></ion-icon>
+              <input type="file" id="upload-audio" hidden />
+            </label>
+          </div>
+        </div>
+        <!---->
+        <div class="swapbuttont">
+          <div class="center">
+            <div class="swap-position">
+              <ion-icon name="swap-horizontal-outline"></ion-icon>
+            </div>
+          </div>
+          <div class="centert">
+            <button class="translatebutton" id="tbtnn">
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+          <div class="useless"></div>
+        </div>
+        <!---->
+        <div class="card output-wrapper">
+          <div class="to">
+            <span class="heading">To :</span>
+            <div class="dropdown-container" id="outputtt-language">
+              <!-- output-language -->
+              <div class="dropdown-toggle">
+                <ion-icon name="globe-outline"></ion-icon>
+                <select class="selected dropdown-menu" data-value="en" name="output_lang">
+                  <!-- output_lang -->
+                  <option value="en">English</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- output-audio area -->
+          <div class="recaudio outputaudio">
+            <audio controls>
+              <source src="">
+              <!-- output audio -->
+            </audio>
+          </div>
+          <div class="card-bottom">
+            <p>Download audio file!</p>
+            <button id="download-btn-audio">
+              <div class="tf">
+                <!--tf-->
+                <span>Download</span>
+                <ion-icon name="cloud-download-outline"></ion-icon>
+                <!--tf-->
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    <!--</form>-->
+    <!-----translation audio section ends------>
+    <!---- image translation starts---->
+    <div class="heading" id="i2i">Image To Image Translation</div>
+    <!--<form action="/http://127.0.0.1:8001" method="post" id="formmm">-->
+    <div class="container ok">
+      <div class="card input-wrapper">
+        <div class="from">
+          <span class="heading">From :</span>
+          <div class="dropdownn-container dropdown-container" id="inputt-language">
+            <!-- inputt-language -->
+            <div class="dropdown-toggle">
+              <ion-icon name="globe-outline"></ion-icon>
+              <select class="selected dropdown-menu" data-value="auto" name="target_lang">
+                <!-- target_lang -->
+                <option value="auto">Auto Detect</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="text-area">
+          <div class="dropimg">Drop your image here</div>
+          <img id="image-preview" src="" alt="" style=" height:auto ;   width:100% " />
+        </div>
+        <div class="card-bottom">
+          <p>Or choose your document!</p>
+          <label for="upload-image">
+            <span id="upload-image-title">Choose File</span>
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            <input type="file" id="upload-image" hidden />
+            <!-- input image -->
+          </label>
+        </div>
+      </div>
+      <!---->
+      <div class="swapbuttont">
+        <div class="center">
+          <div class="swap-position">
+            <ion-icon name="swap-horizontal-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="centert">
+          <button class="translatebutton" id="tbtnnn">
+            <!-- tanslate button -->
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </button>
+        </div>
+        <div class="useless"></div>
+      </div>
+      <!---->
+      <div class="card output-wrapper">
+        <div class="to">
+          <span class="heading">To :</span>
+          <div class="dropdownn-container dropdown-container" id="outputt-language">
+            <!-- outputt-language -->
+            <div class="dropdown-toggle">
+              <ion-icon name="globe-outline"></ion-icon>
+              <select class="selected dropdown-menu" data-value="auto" name="output_lang">
+                <!-- output_lang -->
+                <option value="en">English</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="dropimg">Translated image will appear her</div>
+        <img id="image-preview1" src="" alt="" style=" height:auto ;   width:100% " />
+        <!-- output image -->
+        <div class="card-bottom">
+          <p>Download as a document!</p>
+          <button id="download-btn-img">
+            <!-- download image button -->
+            <span>Download</span>
+            <ion-icon name="cloud-download-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--</form>-->
+    <!---- image translation ends---->
+    <!-----About Us starts------>
+    <section id="s1">
+      <div class="aboutus">
+        <div class="tagline">
+          <h1 class="f1">Bridging Cultures through Words</h1>
+        </div>
+        <div class="wlcm">
+          <h3 class="f2">Welcome to IndiTranslate! We're passionate about Indian languages, culture, and connection. Our mission is to make Indian languages accessible, offering accurate and culturally sensitive translations. Join us in celebrating the richness of India's linguistic heritage and bridging cultures through words.</h3>
+        </div>
+        <div class="info">
+          <h3></h3>
+        </div>
+      </div>
+      <div class="image">
+        <img src="static/images/logobig.jpg" class="img">
+      </div>
+    </section>
+    <!-----About Us Ends------>
+    <!-----Features Starts------>
+    <section class="section services-section" id="services">
+      <div class="containerfeat">
+        <div id="features" class="row">
+          <div class="heading whatwedo">What We Do</div>
+          <!-- feaure box -->
+          <a href="#t2t" class="featurea">
+            <div id="ft1">
+              <div class="feature-box-1">
+                <div class="bubble">
+                  <i class="fa fa-comment"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Text Translation</h2>
+                  <p class="desc">Break language barriers effortlessly. Translate text from one language to another with precision and ease. Whether it's for communication, research, or travel, our text translation feature ensures you can understand and be understood across the globe.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+          <!-- feaure box -->
+          <a href="#t2t" class="featurea">
+            <div id="ft2">
+              <div class="feature-box-1">
+                <div class="bubble">
+                  <i class="fa fa-file"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Doc Translation</h2>
+                  <p>Seamlessly transform documents into different languages. Effortlessly expand your reach by translating important documents, reports, and content with accuracy. Whether it's business, academic, or personal, our document translation feature simplifies global communication and collaboration.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+          <!-- feaure box -->
+          <a href="#i2i" class="featurea">
+            <div id="ft3">
+              <div class="feature-box-1">
+                <div class="bubble">
+                  <i class="fa fa-image"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Image Translation</h2>
+                  <p>Bridge the language gap with visuals. Translate text within images instantly and intuitively. Snap a picture, and our image translation feature converts printed or handwritten text into your preferred language, making information accessible and interactive, whether you're exploring foreign destinations or deciphering multilingual content.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+          <!-- feaure box -->
+          <a href="#a2a" class="featurea">
+            <div id="ft4">
+              <div class="feature-box-1">
+                <div class="bubble">
+                  <i class="fa fa-play"></i>
+                </div>
+                <div class="feature-content">
+                  <h2>Voice Translation</h2>
+                  <p>Speak and connect globally. Our voice translation feature enables real-time, natural conversations across languages. Simply speak into your device, and it translates your words, fostering seamless communication for travel, business, or connecting with people worldwide. Break language barriers effortlessly with voice translation.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- / -->
+        </div>
+      </div>
+    </section>
+    <!-----Features Ends------>
+    <!----TeamMember Section Starts---->
+    <div class="home-container">
+      <div class="profile-card">
+        <div class="img">
+          <img src="https://media.licdn.com/dms/image/D4D03AQFksCPqPjQbWQ/profile-displayphoto-shrink_800_800/0/1680802172892?e=1700092800&v=beta&t=gS9Wbqu5M-tZXaXB-8rkkjEtGAXxkcGiuaPsS3J45VY">
+        </div>
+        <div class="caption">
+          <h3>Qamar <br>Ali </h3>
+          <!-- <p>ML</p> -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/qamarali1" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/qamarali01" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="img">
+          <img src="https://media.licdn.com/dms/image/D4D03AQGIEVJlbg3kIQ/profile-displayphoto-shrink_800_800/0/1679207855628?e=1700092800&v=beta&t=spQHspSVvaJRgdWtht_SXpN2RE5KTyjHZ16pFjSwCIk">
+        </div>
+        <div class="caption">
+          <h3>Daksh <br>Suryavanshi </h3>
+          <!-- <p>ML</p> -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/daksh-suryavanshi" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/DakshSuryavanshi" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="img">
+          <img src="https://media.licdn.com/dms/image/D4D03AQHW9xPV4zwBFg/profile-displayphoto-shrink_800_800/0/1691580001483?e=1700092800&v=beta&t=qAs0FTW1MYD2fykNmnRMqRFf9_NDzKu9iJAwD1hL_ZI">
+        </div>
+        <div class="caption">
+          <h3>Shruti <br>Goel </h3>
+          <!-- <p>Front End Developer</p> -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/shruti-goel-a87325246" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/shru-6" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="img">
+          <img src="https://media.licdn.com/dms/image/D4D03AQHE29bQpH256g/profile-displayphoto-shrink_800_800/0/1682581313634?e=1700092800&v=beta&t=DR8ykMCvPhf_ticsYonpaqvt_Zu6BcZd_6DIp_epQJc">
+        </div>
+        <div class="caption">
+          <h3>Shivam <br>Gupta </h3>
+          <!-- <p>Web Developer</p> -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/shivam-gupta08" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/0812shivam" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="img">
+          <img src="static\images\vedanshi.jpeg">
+          <!-- https://media.licdn.com/dms/image/D4D35AQGO_ZUkiKDR1w/profile-framedphoto-shrink_800_800/0/1682861622705?e=1695193200&v=beta&t=58ZEWeRf8Vy6mqN9-_6-xSkdpkdyKUkQEV0GHvd41YM -->
+        </div>
+        <div class="caption">
+          <h3>Vedanshi <br>Bansal </h3>
+          <!-- <p>ML</p> -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/vedanshi-bansal-69729722b" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/vedanshibansal" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="img">
+          <img src="https://media.licdn.com/dms/image/C4D03AQHmRuYXVCpvhA/profile-displayphoto-shrink_800_800/0/1661860352420?e=1700092800&v=beta&t=52V9bTz-lgfaYNNMeCvPlL_Ong79sujoRuMHw0063qQ">
+        </div>
+        <div class="caption">
+          <h3>Radhika <br>Gupta </h3>
+          <!-- <p></p> -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/radhika-gupta-869546215" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/radhika2022decode" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----TeamMember Section Ends---->
+    <!-----Footer Starts------>
+    <footer>
+      <div class="footer-content">
+        <div class="contact-info">
+          <div>
+            <a href="#">
+              <img class="logo" src="static/images/logotrnsprnt.png" alt="Company Logo">
+            </a>
+          </div>
+          <h2>Contact Us</h2>
+          <a class="linkedin" href="mailto:inditranslate@gmail.com">Email: inditranslate@gmail.com</a>
+          <br>
+          <a class="linkedin" href="tel:+919650534320">Phone: +91 9650534320</a>
+        </div>
+        <div class="team-members">
+          <!-- <h2>Team Members</h2> -->
+          <ul>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a class="linkedin" href="#">Home</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a class="linkedin" href="#s1">About Us</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <button id="faqLink" class="linkedin">FAQ</button>
+              <div id="faqPopup" class="faqpopup">
+                <div class="faqpopup-content">
+                  <span class="faqclose" id="faqclosePopup">&times;</span>
+                  <h2 class="faqques">Frequently Asked Questions</h2>
+                  <ul>
+                    <li>
+                      <strong>Q1:</strong> What is a context-based translation app, and how does it differ from traditional translation tools? <br>
+                    </li>
+                    <li>
+                      <strong>ANS:</strong> A context-based translation app goes beyond literal word translations to consider the context of a sentence or phrase. It understands the nuances, idioms, and cultural references to provide more accurate and natural translations. This is in contrast to traditional tools that often provide word-for-word translations. <br>
+                    </li>
+                    <li>
+                      <strong>Q2:</strong> How accurate is the context-based translation feature in this app? <br>
+                    </li>
+                    <li>
+                      <strong>ANS:</strong> Our context-based translation feature is highly accurate, thanks to advanced machine learning algorithms. It takes into account the surrounding words and phrases to provide translations that are contextually relevant and fluent. <br>
+                    </li>
+                    <li>
+                      <strong>Q3:</strong>Are there any limitations or specific scenarios where context-based translation may not be as effective? <br>
+                    </li>
+                    <li>
+                      <strong>ANS:</strong> Context-based translation excels in most scenarios, but it may face challenges with highly technical or specialized content where context is limited. Additionally, it may struggle with poorly written or ambiguous text. <br>
+                    </li>
+                    <li>
+                      <strong>Q4:</strong> Is this app suitable for both casual users and professional translators? <br>
+                    </li>
+                    <li>
+                      <strong>ANS:</strong> Yes, our app caters to a broad audience. Casual users can enjoy quick and accurate translations, while professional translators can use it as a valuable tool to enhance their work. <br>
+                    </li>
+                    <li>
+                      <strong>Q5:</strong> What platforms and devices is the app compatible with? <br>
+                    </li>
+                    <li>
+                      <strong>ANS:</strong> Our app is available on both iOS and Android platforms, and it can be used on smartphones and tablets. We also offer a web version for desktop users. <br>
+                    </li>
+                    <li>
+                      <strong>Q6:</strong> Are there any subscription plans or pricing options available? <br>
+                    </li>
+                    <li>
+                      <strong>ANS:</strong> Yes, we offer both free and premium subscription plans. The premium plans provide access to additional features and enhanced translation capabilities. You can find detailed pricing information within the app. <br>
+                    </li>
+                    <!-- Add more FAQ items as needed -->
+                  </ul>
+                </div>
+              </div>
+              <!-- / -->
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <button id="ppLink" class="linkedin">Privacy Policy</button>
+              <!--Privacy Policy pop up-->
+              <div id="ppPopup" class="pppopup">
+                <div class="pppopup-content">
+                  <span class="ppclose" id="ppclosePopup">&times;</span>
+                  <h2>Privacy Policy</h2>
+                  <ul>
+                    <li> Thank you for using IndiTranslate. At IndiTranslate, we value your privacy and are committed to safeguarding your personal information. This Privacy Policy explains how we collect, use, disclose, and protect your data when you use our translation services and visit our website. Please take the time to read this Privacy Policy carefully. By accessing or using our Website, you agree to the practices outlined in this policy. <br>
+                    </li>
+                    <li>
+                      <strong>1. Information We Collect</strong>
+                      <br>
+                    </li>
+                    <li> 1.1. Personal Information: We may collect personal information such as your name, email address, and contact details when you provide it to us, for example, when you sign up for an account or contact our support team. <br>
+                    </li>
+                    <li> 1.2. Translation Data: When you use our translation services, we collect and store the text you input for translation. This data is used solely for the purpose of providing translation services and is not stored indefinitely. <br>
+                    </li>
+                    <li> 1.3. Usage Information: We automatically collect certain information about your device and how you interact with our Website, including your IP address, browser type, operating system, referral source, pages visited, and the date and time of each visit. <br>
+                    </li>
+                    <li> 1.4. Cookies and Similar Technologies: We use cookies and similar technologies to gather information about your browsing behavior. You can manage your cookie preferences through your browser settings. <br>
+                    </li>
+                    <li>
+                      <strong>2. How We Use Your Information</strong>
+                      <br>
+                    </li>
+                    <li> 2.1. To Provide Services: We use your personal information to provide translation services, improve translation accuracy, respond to your inquiries, and manage your account. <br>
+                    </li>
+                    <li> 2.2. Analytics: We analyze usage data to enhance our Website's functionality, troubleshoot issues, and improve the user experience. <br>
+                    </li>
+                    <li> 2.3. Communication: With your consent, we may use your email address to send you newsletters, updates, and promotional materials. You can opt-out of receiving such communications at any time. <br>
+                    </li>
+                    <li>
+                      <strong>3. How We Share Your Information</strong>
+                      <br>
+                    </li>
+                    <li> 3.1. Service Providers: We may share your personal information with trusted service providers who assist us in operating the Website, delivering services, or conducting business activities on our behalf. These providers are bound by confidentiality and data protection agreements. <br>
+                    </li>
+                    <li> 3.2. Legal Compliance: We may disclose your information when required by law, such as in response to a legal process or government request, or to protect our rights and interests. <br>
+                    </li>
+                    <li>
+                      <strong>4. Data Security</strong>
+                      <br>
+                    </li>
+                    <li> We employ reasonable security measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, please be aware that no method of data transmission over the internet or electronic storage is entirely secure. <br>
+                    </li>
+                    <li>
+                      <strong>5. Your Rights</strong>
+                      <br>
+                    </li>
+                    <li> You have specific rights regarding your personal information, including the right to access, correct, or delete your data. If you wish to exercise these rights or have questions about your data, please contact us using the information provided in the "Contact Us" section below. <br>
+                    </li>
+                    <li>
+                      <strong>6. Changes to this Privacy Policy</strong>
+                      <br>
+                    </li>
+                    <li> We reserve the right to update this Privacy Policy to reflect changes in our practices or legal requirements. We will notify you of any significant changes by posting the updated policy on our Website. Your continued use of the Website after such modifications constitutes your acceptance of the updated Privacy Policy. <br>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- / -->
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <button id="crLink" class="linkedin">Copyright</button>
+              <!--Copyright pop up-->
+              <div id="crPopup" class="crpopup">
+                <div class="crpopup-content">
+                  <span class="crclose" id="crclosePopup">&times;</span>
+                  <h2>Copyright</h2>
+                  <ul>
+                    <li> All content, materials, and resources available on IndiTranslate are protected by copyright laws and owned by IndiTranslate. This Copyright Notice outlines the terms and conditions governing the use, reproduction, and distribution of the Website's content. <br>
+                    </li>
+                    <li>
+                      <strong>1. Copyright Ownership</strong>
+                      <br>
+                    </li>
+                    <li> 1.1. Website Content: All text, images, graphics, logos, audio, video, and other materials on the Website are copyrighted and are the intellectual property of IndiTranslate or its content suppliers, unless otherwise indicated. <br>
+                    </li>
+                    <li>
+                      <strong>2. Permitted Uses</strong>
+                      <br>
+                    </li>
+                    <li> Personal Use: You are granted a limited, revocable, non-exclusive, and non-transferable license to access and use the Website and its content for personal, non-commercial purposes only. <br>
+                    </li>
+                    <li>
+                      <strong>3. Prohibited Uses</strong>
+                      <br>
+                    </li>
+                    <li> 3.1. Commercial Use: You may not use the Website or its content for any commercial purposes without obtaining express written consent from IndiTranslate. <br>
+                    </li>
+                    <li> 3.2. Modification: You may not modify, alter, or create derivative works based on the Website's content without prior written permission. <br>
+                    </li>
+                    <li> 3.3. Distribution: You may not reproduce, distribute, publicly display, or perform the content from this Website without the written consent of IndiTranslate. <br>
+                    </li>
+                    <li>
+                      <strong>4. Copyright Infringement</strong>
+                      <br>
+                    </li>
+                    <li> ndiTranslate respects the intellectual property rights of others and expects users of the Website to do the same. If you believe that any content on the Website infringes your copyright, please contact us immediately. <br>
+                    </li>
+                    <li>
+                      <strong>5. Trademarks</strong>
+                      <br>
+                    </li>
+                    <li> All trademarks, service marks, and logos displayed on the Website are the property of IndiTranslate or other third parties. You may not use these marks without the prior written consent of IndiTranslate or the respective trademark owner. <br>
+                    </li>
+                    <li>
+                      <strong>6. Changes to this Copyright Notice</strong>
+                      <br>
+                    </li>
+                    <li> IndiTranslate reserves the right to update this Copyright Notice to reflect changes in our practices or legal requirements. We will notify you of any significant changes by posting the updated notice on the Website. Your continued use of the Website after such modifications constitutes your acceptance of the updated Copyright Notice. <br>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- / -->
+            </li>
+          </ul>
+        </div>
+        <!-- <div class="team-members"><h2>Team Members</h2><ul><li><a class="linkedin" href="https://www.linkedin.com/in/qamarali1" target="_blank">Qamar Ali</a></li><li><a class="linkedin" href="https://www.linkedin.com/in/daksh-suryavanshi" target="_blank">Daksh Suryavanshi</a></li><li><a class="linkedin" href="https://www.linkedin.com/in/shivam-gupta08" target="_blank">Shivam Gupta</a></li><li><a class="linkedin" href="https://www.linkedin.com/in/shruti-goel-a87325246" target="_blank">Shruti Goel</a></li><li><a class="linkedin" href="https://www.linkedin.com/in/radhika-gupta-869546215" target="_blank">Radhika Gupta</a></li><li><a class="linkedin" href="https://www.linkedin.com/in/vedanshi-bansal-69729722b" target="_blank">Vedanshi Bansal</a></li><li><a class="linkedin suk" href="" target="_blank">Sukriti Goel</a></li></ul></div>-->
+      </div>
+    </footer>
+    <!-----Footer Ends------>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/languages.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
